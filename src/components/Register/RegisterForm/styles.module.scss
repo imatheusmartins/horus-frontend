@@ -1,0 +1,57 @@
+.registerForm {
+  width: 19rem;
+  min-height: 30rem;
+  display: flex;
+  flex-direction: column;
+  border-radius: 15px;
+  padding: 2rem;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.48);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5.5px);
+  -webkit-backdrop-filter: blur(5.5px);
+  border: 1px solid var(--horus-blue);
+
+  &__logoImg {
+    width: 4rem;
+    margin: 0 auto;
+  }
+
+  &__fields {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  &__actions {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-top: 1rem;
+  }
+
+  &__registerButton {
+    background-color: var(--horus-blue) !important;
+    font-size: 0.7rem !important;
+    transition: all 0.3s ease;
+
+    &:hover {
+      background-color: var(--horus-blue-500) !important;
+      box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px !important;
+    }
+  }
+
+  &__loginButton {
+    background-color: transparent !important;
+    border: 1px solid var(--horus-blue) !important;
+    color: var(--horus-blue) !important;
+    font-size: 0.7rem !important;
+    transition: all 0.3s ease;
+
+    &:hover {
+      background-color: var(--horus-blue-50) !important;
+      box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px !important;
+      scale: 1.02;
+    }
+  }
+}

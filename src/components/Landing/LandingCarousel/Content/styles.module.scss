@@ -1,0 +1,33 @@
+.contentBox {
+  display: flex !important;
+  z-index: 3 !important;
+  padding-left: 7.4rem;
+  align-items: start !important;
+  flex-direction: column;
+}
+
+.contentButton {
+  border: 1px solid white !important;
+  width: auto !important;
+  padding: 0.3rem 2rem !important;
+  font-size: 0.8rem !important;
+  color: white !important;
+  margin-top: 1.5rem !important;
+}
+
+.contentButton:hover {
+  /* Adicione !important aqui para sobrescrever o white !important anterior */
+  background-color: var(--hover-landing-button) !important;
+  border-color: var(--hover-landing-button) !important;
+}
+
+.contentTypography {
+  color: white !important;
+  font-size: 3rem !important;
+  line-height: 3.5rem !important;
+  text-wrap: "wrap" !important;
+  font-weight: bolder !important;
+  font-family: sans-serif !important;
+  text-align: start !important;
+  text-transform: uppercase !important;
+}

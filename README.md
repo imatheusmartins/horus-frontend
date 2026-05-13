@@ -81,8 +81,8 @@ O workflow esta definido em `.github/workflows/ci.yml`.
 
 Ele e executado nas seguintes situacoes:
 
-- `push` nas branches `main` e `develop`
-- `pull request` para `main` e `develop`
+- `push` nas branches `main` e `dev`
+- `pull request` para `main` e `dev`
 
 As etapas executadas sao:
 

@@ -93,7 +93,7 @@ const FormLogin = () => {
           margin: ".1rem auto 1.5rem",
         }}
       >
-        Conectando conhecimento clÃ­nico e precisÃ£o de IA na saÃºde da retina.
+        Conectando conhecimento clínico e precisão de IA na saúde da retina.
       </Typography>
 
       <Box className={styles.loginForm__fields}>

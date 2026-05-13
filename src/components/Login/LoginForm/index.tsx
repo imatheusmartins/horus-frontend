@@ -89,7 +89,7 @@ const FormLogin = () => {
       <Typography
         sx={{
           color: "var(--horus-blue)",
-          fontSize: ".8rem",
+          fontSize: ".20rem",
           margin: ".1rem auto 1.5rem",
         }}
       >

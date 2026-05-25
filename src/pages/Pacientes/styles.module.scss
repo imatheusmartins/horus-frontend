@@ -1,0 +1,78 @@
+.pacientesPage {
+  width: 100%;
+  color: #1f2937;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  &__title {
+    margin: 0;
+    color: var(--horus-blue);
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 1.2;
+  }
+
+  &__subtitle {
+    margin-top: 0.25rem;
+    color: #5f6b7a;
+    font-size: 0.95rem;
+  }
+
+  &__newButton {
+    background-color: var(--horus-blue) !important;
+    font-weight: 700 !important;
+    text-transform: none !important;
+  }
+
+  &__feedback {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    color: var(--horus-blue);
+  }
+
+  &__emptyState {
+    padding: 2rem;
+    border-radius: 8px !important;
+    box-shadow: none !important;
+
+    h2 {
+      margin: 0 0 0.5rem;
+      color: var(--horus-blue);
+      font-size: 1.25rem;
+      font-weight: 700;
+    }
+  }
+
+  &__tableContainer {
+    border-radius: 8px !important;
+    box-shadow: none !important;
+    overflow: hidden;
+
+    :global(.MuiTableHead-root) {
+      background-color: var(--horus-blue);
+    }
+
+    :global(.MuiTableCell-head) {
+      color: white;
+      font-weight: 700;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .pacientesPage {
+    &__header {
+      align-items: stretch;
+      flex-direction: column;
+    }
+  }
+}

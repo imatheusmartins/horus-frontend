@@ -1,0 +1,22 @@
+.dashboardLayout {
+  min-height: 100vh;
+  width: 100%;
+  background: #f6f8fb;
+  color: #1f2937;
+  text-align: left;
+
+  &__content {
+    min-height: 100vh;
+    margin-left: 15rem;
+    padding: 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .dashboardLayout {
+    &__content {
+      margin-left: 0;
+      padding: 5.5rem 1rem 1.25rem;
+    }
+  }
+}

@@ -11,8 +11,20 @@ import {
 import styles from "./styles.module.scss";
 import { Link } from "@tanstack/react-router";
 import logoHorus from "@/assets/logo.png";
+import { Home, Users } from "lucide-react";
 
-const pages = ["teste", "teste", "teste"];
+const pages = [
+  {
+    icon: Home,
+    label: "Home",
+    to: "/dashboard",
+  },
+  {
+    icon: Users,
+    label: "Pacientes",
+    to: "/pacientes",
+  },
+];
 
 export default function MenuAppBar() {
   // const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
@@ -37,25 +49,33 @@ export default function MenuAppBar() {
           />
           <Box className={styles.dashboardNavBar__tabs}>
             <List className={styles.dashboardNavBar__list}>
-              {pages.map((page) => (
-                <ListItem
-                  key={page}
-                  disablePadding
-                  className={styles.dashboardNavBar__listItem}
-                >
-                  <ListItemButton
-                    component={Link}
-                    to={`/${page.toLowerCase().replace(/\s+/g, "-")}`}
-                    className={styles.dashboardNavBar__listItemButton}
+              {pages.map((page) => {
+                const Icon = page.icon;
+
+                return (
+                  <ListItem
+                    key={page.to}
+                    disablePadding
+                    className={styles.dashboardNavBar__listItem}
                   >
-                    <ListItemText
-                      primary={page}
-                      className={styles.dashboardNavBar__listItemText}
-                    />
-                    <Box className={styles.bottomBar} />
-                  </ListItemButton>
-                </ListItem>
-              ))}
+                    <ListItemButton
+                      component={Link}
+                      to={page.to}
+                      className={styles.dashboardNavBar__listItemButton}
+                    >
+                      <Icon
+                        size={18}
+                        className={styles.dashboardNavBar__listItemIcon}
+                      />
+                      <ListItemText
+                        primary={page.label}
+                        className={styles.dashboardNavBar__listItemText}
+                      />
+                      <Box className={styles.bottomBar} />
+                    </ListItemButton>
+                  </ListItem>
+                );
+              })}
             </List>
           </Box>
           <Box></Box>

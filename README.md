@@ -31,10 +31,10 @@ npm install
 2. Crie o arquivo `.env` na raiz do projeto com a variavel abaixo:
 
 ```env
-VITE_API_URL=http://localhost:8080
+VITE_API_URL=http://localhost:8081
 ```
 
-Se a variavel nao for definida, o frontend utiliza `http://localhost:8080` como valor padrao.
+Se a variavel nao for definida, o frontend utiliza `http://localhost:8081` como valor padrao.
 
 3. Inicie o servidor de desenvolvimento:
 
@@ -56,7 +56,7 @@ npm run dev
 ### Desenvolvimento local
 
 ```env
-VITE_API_URL=http://localhost:8080
+VITE_API_URL=http://localhost:8081
 ```
 
 ### Producao
@@ -125,6 +125,6 @@ Para manter o fluxo de entrega simples e organizado:
 
 ## Observacoes
 
-- O frontend espera uma API disponivel, por padrao, em `http://localhost:8080`
+- O frontend espera uma API disponivel, por padrao, em `http://localhost:8081`
 - Caso o backend utilize outro host ou porta, ajuste `VITE_API_URL`
 - O diretorio `dist` contem apenas os arquivos gerados pela build e nao deve ser editado manualmente

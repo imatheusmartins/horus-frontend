@@ -1,0 +1,157 @@
+.dashboardPage {
+  width: 100%;
+  color: #1f2937;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  &__title {
+    margin: 0;
+    color: var(--horus-blue);
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 1.2;
+  }
+
+  &__subtitle,
+  &__metric p,
+  &__panel p,
+  &__emptyState p,
+  &__lastExam p {
+    color: #5f6b7a;
+  }
+
+  &__actions {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+  }
+
+  &__primaryButton {
+    background-color: var(--horus-blue) !important;
+    font-weight: 700 !important;
+    text-transform: none !important;
+  }
+
+  &__secondaryButton {
+    color: var(--horus-blue) !important;
+    border-color: var(--horus-blue) !important;
+    font-weight: 700 !important;
+    text-transform: none !important;
+  }
+
+  &__feedback {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    color: var(--horus-blue);
+  }
+
+  &__metrics {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1rem;
+  }
+
+  &__metric,
+  &__panel {
+    padding: 1.5rem;
+    border-radius: 8px !important;
+    box-shadow: none !important;
+  }
+
+  &__metric {
+    display: grid;
+    gap: 0.45rem;
+
+    svg {
+      color: var(--horus-blue);
+    }
+
+    strong {
+      color: var(--horus-blue);
+      font-size: 1.5rem;
+      font-weight: 700;
+      line-height: 1.2;
+    }
+  }
+
+  &__contentGrid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.2fr) minmax(20rem, 0.8fr);
+    gap: 1rem;
+  }
+
+  &__panel {
+    h2 {
+      margin: 0 0 1rem;
+      color: var(--horus-blue);
+      font-size: 1.25rem;
+      font-weight: 700;
+    }
+  }
+
+  &__steps {
+    display: grid;
+    gap: 1rem;
+
+    > div {
+      padding-left: 1rem;
+      border-left: 3px solid var(--horus-blue);
+    }
+
+    strong {
+      display: block;
+      color: #1f2937;
+      font-weight: 700;
+    }
+  }
+
+  &__lastExam,
+  &__emptyState {
+    display: grid;
+    gap: 0.65rem;
+
+    strong {
+      color: #1f2937;
+      font-weight: 700;
+    }
+  }
+}
+
+@media (max-width: 1100px) {
+  .dashboardPage {
+    &__metrics {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    &__contentGrid {
+      grid-template-columns: 1fr;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .dashboardPage {
+    &__header {
+      align-items: stretch;
+      flex-direction: column;
+    }
+
+    &__actions {
+      flex-direction: column;
+    }
+
+    &__metrics {
+      grid-template-columns: 1fr;
+    }
+  }
+}
+

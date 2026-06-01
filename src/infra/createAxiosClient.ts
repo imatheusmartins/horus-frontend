@@ -27,6 +27,16 @@ export default function createAxiosClient(baseUrl: string): AxiosInstance {
     },
   });
 
+  instance.interceptors.request.use((config) => {
+    const token = localStorage.getItem("authToken");
+
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
+    }
+
+    return config;
+  });
+
   /**
    * Interceptor de Resposta:
    * Atua globalmente em todas as respostas recebidas por esta instância.

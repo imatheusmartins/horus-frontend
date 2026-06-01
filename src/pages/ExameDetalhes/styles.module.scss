@@ -1,0 +1,131 @@
+.exameDetalhesPage {
+  width: 100%;
+  color: #1f2937;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+
+  &__header,
+  &__summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  &__title {
+    margin: 0;
+    color: var(--horus-blue);
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 1.2;
+  }
+
+  &__subtitle,
+  &__summary p,
+  &__imagePanel p,
+  &__panel p,
+  &__row p,
+  &__detection p {
+    color: #5f6b7a;
+  }
+
+  &__summary,
+  &__imagePanel,
+  &__panel {
+    padding: 1.5rem;
+    border-radius: 8px !important;
+    box-shadow: none !important;
+  }
+
+  &__summary h2,
+  &__imagePanel h2,
+  &__panel h2,
+  &__row h3,
+  &__detection h3 {
+    margin: 0 0 0.35rem;
+    color: var(--horus-blue);
+    font-weight: 700;
+  }
+
+  &__highlight {
+    min-width: 12rem;
+    padding: 1rem;
+    border: 1px solid #d7dde7;
+    border-radius: 8px;
+    text-align: right;
+
+    strong {
+      display: block;
+      color: var(--horus-blue);
+      font-size: 1.3rem;
+      font-weight: 700;
+    }
+  }
+
+  &__feedback {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    color: var(--horus-blue);
+  }
+
+  &__secondaryButton {
+    color: var(--horus-blue) !important;
+    border-color: var(--horus-blue) !important;
+    font-weight: 700 !important;
+    text-transform: none !important;
+  }
+
+  &__images {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+  }
+
+  &__imagePanel {
+    img {
+      display: block;
+      width: 100%;
+      max-height: 28rem;
+      object-fit: contain;
+      border: 1px solid #d7dde7;
+      border-radius: 8px;
+      background: #f8fafc;
+    }
+  }
+
+  &__list {
+    display: grid;
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+
+  &__row,
+  &__detection {
+    display: grid;
+    gap: 0.65rem;
+    padding: 1rem;
+    border: 1px solid #d7dde7;
+    border-radius: 8px;
+  }
+}
+
+@media (max-width: 900px) {
+  .exameDetalhesPage {
+    &__header,
+    &__summary {
+      align-items: stretch;
+      flex-direction: column;
+    }
+
+    &__highlight {
+      text-align: left;
+    }
+
+    &__images {
+      grid-template-columns: 1fr;
+    }
+  }
+}
+

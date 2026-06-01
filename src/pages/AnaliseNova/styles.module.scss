@@ -1,0 +1,108 @@
+.analiseNovaPage {
+  width: 100%;
+  color: #1f2937;
+  display: flex;
+
+  &__panel {
+    width: 100%;
+    max-width: 48rem;
+    align-self: flex-start;
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+    border-radius: 8px !important;
+    box-shadow: none !important;
+  }
+
+  &__title {
+    margin: 0;
+    color: var(--horus-blue);
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 1.2;
+  }
+
+  &__text,
+  &__patient p,
+  &__upload p {
+    color: #5f6b7a;
+  }
+
+  &__patient {
+    margin: 1rem 0;
+    padding: 1rem;
+    border: 1px solid #d7dde7;
+    border-radius: 8px;
+
+    h2 {
+      margin: 0 0 0.25rem;
+      color: var(--horus-blue);
+      font-size: 1.15rem;
+      font-weight: 700;
+    }
+  }
+
+  &__upload,
+  &__feedback,
+  &__actions {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  &__upload {
+    flex-wrap: wrap;
+  }
+
+  &__feedback {
+    margin-top: 1rem;
+    color: var(--horus-blue);
+  }
+
+  &__preview {
+    margin-top: 1rem;
+    width: 100%;
+    max-width: 32rem;
+    overflow: hidden;
+    border: 1px solid #d7dde7;
+    border-radius: 8px;
+
+    img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+  }
+
+  &__alert {
+    margin-top: 1rem;
+  }
+
+  &__actions {
+    justify-content: flex-end;
+    margin-top: 1.5rem;
+  }
+
+  &__backButton {
+    color: var(--horus-blue) !important;
+    border-color: var(--horus-blue) !important;
+    font-weight: 700 !important;
+    text-transform: none !important;
+  }
+
+  &__button {
+    background-color: var(--horus-blue) !important;
+    font-weight: 700 !important;
+    text-transform: none !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .analiseNovaPage {
+    &__actions {
+      align-items: stretch;
+      flex-direction: column-reverse;
+    }
+  }
+}
+

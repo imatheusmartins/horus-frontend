@@ -10,13 +10,24 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as RegisterRouteImport } from './routes/register'
+import { Route as PacientesRouteImport } from './routes/pacientes'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as DashboardRouteImport } from './routes/dashboard'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as PacientesNovoRouteImport } from './routes/pacientes_.novo'
+import { Route as PacientesPacienteIdRouteImport } from './routes/pacientes_.$pacienteId'
+import { Route as ExamesExameIdRouteImport } from './routes/exames.$exameId'
+import { Route as PacientesPacienteIdEditarRouteImport } from './routes/pacientes_.$pacienteId_.editar'
+import { Route as PacientesPacienteIdAnalisesNovaRouteImport } from './routes/pacientes_.$pacienteId_.analises.nova'
 
 const RegisterRoute = RegisterRouteImport.update({
   id: '/register',
   path: '/register',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PacientesRoute = PacientesRouteImport.update({
+  id: '/pacientes',
+  path: '/pacientes',
   getParentRoute: () => rootRouteImport,
 } as any)
 const LoginRoute = LoginRouteImport.update({
@@ -34,39 +45,121 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PacientesNovoRoute = PacientesNovoRouteImport.update({
+  id: '/pacientes_/novo',
+  path: '/pacientes/novo',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PacientesPacienteIdRoute = PacientesPacienteIdRouteImport.update({
+  id: '/pacientes_/$pacienteId',
+  path: '/pacientes/$pacienteId',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ExamesExameIdRoute = ExamesExameIdRouteImport.update({
+  id: '/exames/$exameId',
+  path: '/exames/$exameId',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PacientesPacienteIdEditarRoute =
+  PacientesPacienteIdEditarRouteImport.update({
+    id: '/pacientes_/$pacienteId_/editar',
+    path: '/pacientes/$pacienteId/editar',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const PacientesPacienteIdAnalisesNovaRoute =
+  PacientesPacienteIdAnalisesNovaRouteImport.update({
+    id: '/pacientes_/$pacienteId_/analises/nova',
+    path: '/pacientes/$pacienteId/analises/nova',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/dashboard': typeof DashboardRoute
   '/login': typeof LoginRoute
+  '/pacientes': typeof PacientesRoute
   '/register': typeof RegisterRoute
+  '/exames/$exameId': typeof ExamesExameIdRoute
+  '/pacientes/$pacienteId': typeof PacientesPacienteIdRoute
+  '/pacientes/novo': typeof PacientesNovoRoute
+  '/pacientes/$pacienteId/editar': typeof PacientesPacienteIdEditarRoute
+  '/pacientes/$pacienteId/analises/nova': typeof PacientesPacienteIdAnalisesNovaRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/dashboard': typeof DashboardRoute
   '/login': typeof LoginRoute
+  '/pacientes': typeof PacientesRoute
   '/register': typeof RegisterRoute
+  '/exames/$exameId': typeof ExamesExameIdRoute
+  '/pacientes/$pacienteId': typeof PacientesPacienteIdRoute
+  '/pacientes/novo': typeof PacientesNovoRoute
+  '/pacientes/$pacienteId/editar': typeof PacientesPacienteIdEditarRoute
+  '/pacientes/$pacienteId/analises/nova': typeof PacientesPacienteIdAnalisesNovaRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/dashboard': typeof DashboardRoute
   '/login': typeof LoginRoute
+  '/pacientes': typeof PacientesRoute
   '/register': typeof RegisterRoute
+  '/exames/$exameId': typeof ExamesExameIdRoute
+  '/pacientes_/$pacienteId': typeof PacientesPacienteIdRoute
+  '/pacientes_/novo': typeof PacientesNovoRoute
+  '/pacientes_/$pacienteId_/editar': typeof PacientesPacienteIdEditarRoute
+  '/pacientes_/$pacienteId_/analises/nova': typeof PacientesPacienteIdAnalisesNovaRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/dashboard' | '/login' | '/register'
+  fullPaths:
+    | '/'
+    | '/dashboard'
+    | '/login'
+    | '/pacientes'
+    | '/register'
+    | '/exames/$exameId'
+    | '/pacientes/$pacienteId'
+    | '/pacientes/novo'
+    | '/pacientes/$pacienteId/editar'
+    | '/pacientes/$pacienteId/analises/nova'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/dashboard' | '/login' | '/register'
-  id: '__root__' | '/' | '/dashboard' | '/login' | '/register'
+  to:
+    | '/'
+    | '/dashboard'
+    | '/login'
+    | '/pacientes'
+    | '/register'
+    | '/exames/$exameId'
+    | '/pacientes/$pacienteId'
+    | '/pacientes/novo'
+    | '/pacientes/$pacienteId/editar'
+    | '/pacientes/$pacienteId/analises/nova'
+  id:
+    | '__root__'
+    | '/'
+    | '/dashboard'
+    | '/login'
+    | '/pacientes'
+    | '/register'
+    | '/exames/$exameId'
+    | '/pacientes_/$pacienteId'
+    | '/pacientes_/novo'
+    | '/pacientes_/$pacienteId_/editar'
+    | '/pacientes_/$pacienteId_/analises/nova'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   DashboardRoute: typeof DashboardRoute
   LoginRoute: typeof LoginRoute
+  PacientesRoute: typeof PacientesRoute
   RegisterRoute: typeof RegisterRoute
+  ExamesExameIdRoute: typeof ExamesExameIdRoute
+  PacientesPacienteIdRoute: typeof PacientesPacienteIdRoute
+  PacientesNovoRoute: typeof PacientesNovoRoute
+  PacientesPacienteIdEditarRoute: typeof PacientesPacienteIdEditarRoute
+  PacientesPacienteIdAnalisesNovaRoute: typeof PacientesPacienteIdAnalisesNovaRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -76,6 +169,13 @@ declare module '@tanstack/react-router' {
       path: '/register'
       fullPath: '/register'
       preLoaderRoute: typeof RegisterRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/pacientes': {
+      id: '/pacientes'
+      path: '/pacientes'
+      fullPath: '/pacientes'
+      preLoaderRoute: typeof PacientesRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/login': {
@@ -99,6 +199,41 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/pacientes_/novo': {
+      id: '/pacientes_/novo'
+      path: '/pacientes/novo'
+      fullPath: '/pacientes/novo'
+      preLoaderRoute: typeof PacientesNovoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/pacientes_/$pacienteId': {
+      id: '/pacientes_/$pacienteId'
+      path: '/pacientes/$pacienteId'
+      fullPath: '/pacientes/$pacienteId'
+      preLoaderRoute: typeof PacientesPacienteIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/exames/$exameId': {
+      id: '/exames/$exameId'
+      path: '/exames/$exameId'
+      fullPath: '/exames/$exameId'
+      preLoaderRoute: typeof ExamesExameIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/pacientes_/$pacienteId_/editar': {
+      id: '/pacientes_/$pacienteId_/editar'
+      path: '/pacientes/$pacienteId/editar'
+      fullPath: '/pacientes/$pacienteId/editar'
+      preLoaderRoute: typeof PacientesPacienteIdEditarRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/pacientes_/$pacienteId_/analises/nova': {
+      id: '/pacientes_/$pacienteId_/analises/nova'
+      path: '/pacientes/$pacienteId/analises/nova'
+      fullPath: '/pacientes/$pacienteId/analises/nova'
+      preLoaderRoute: typeof PacientesPacienteIdAnalisesNovaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -106,7 +241,13 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   DashboardRoute: DashboardRoute,
   LoginRoute: LoginRoute,
+  PacientesRoute: PacientesRoute,
   RegisterRoute: RegisterRoute,
+  ExamesExameIdRoute: ExamesExameIdRoute,
+  PacientesPacienteIdRoute: PacientesPacienteIdRoute,
+  PacientesNovoRoute: PacientesNovoRoute,
+  PacientesPacienteIdEditarRoute: PacientesPacienteIdEditarRoute,
+  PacientesPacienteIdAnalisesNovaRoute: PacientesPacienteIdAnalisesNovaRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

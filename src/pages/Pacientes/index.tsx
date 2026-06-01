@@ -1,9 +1,12 @@
 import DashboardLayout from "@/components/Dashboard/DashboardLayout";
 import { HttpErrorApi, HttpStatusCode } from "@/infra/HttpErrorApi";
 import {
+  deletePaciente,
   getPacientesByUsuario,
   type Paciente,
 } from "@/service/Paciente";
+import { formatDate } from "@/utils/formatters";
+import { getAuthUser, getAuthUserId } from "@/utils/session";
 import {
   Alert,
   Box,
@@ -19,45 +22,9 @@ import {
   Typography,
 } from "@mui/material";
 import { Link, useNavigate } from "@tanstack/react-router";
-import { Plus } from "lucide-react";
+import { Edit, Eye, Plus, Trash2 } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 import styles from "./styles.module.scss";
-
-interface AuthUser {
-  id?: string | number;
-  usuarioId?: string | number;
-  userId?: string | number;
-}
-
-function getAuthUser(): AuthUser | null {
-  const storedUser = localStorage.getItem("authUser");
-
-  if (!storedUser) {
-    return null;
-  }
-
-  try {
-    return JSON.parse(storedUser) as AuthUser;
-  } catch {
-    return null;
-  }
-}
-
-function formatDate(date: string) {
-  const parsedDate = new Date(date);
-
-  if (Number.isNaN(parsedDate.getTime())) {
-    return date;
-  }
-
-  return new Intl.DateTimeFormat("pt-BR", {
-    timeZone: "UTC",
-  }).format(parsedDate);
-}
-
-function getAuthUserId(authUser: AuthUser | null) {
-  return authUser?.id ?? authUser?.usuarioId ?? authUser?.userId ?? null;
-}
 
 export default function PacientesPage() {
   const navigate = useNavigate();
@@ -66,11 +33,12 @@ export default function PacientesPage() {
   const [pacientes, setPacientes] = useState<Paciente[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [errorMessage, setErrorMessage] = useState("");
+  const [actionError, setActionError] = useState("");
 
   useEffect(() => {
     if (!authUserId) {
       setIsLoading(false);
-      setErrorMessage("Faca login para visualizar seus pacientes.");
+      setErrorMessage("Faça login para visualizar seus pacientes.");
       void navigate({ to: "/login" });
       return;
     }
@@ -102,7 +70,7 @@ export default function PacientesPage() {
         } else if (error instanceof HttpErrorApi) {
           setErrorMessage(error.message);
         } else {
-          setErrorMessage("Nao foi possivel carregar os pacientes.");
+          setErrorMessage("Não foi possível carregar os pacientes.");
         }
       } finally {
         if (isMounted) {
@@ -118,6 +86,29 @@ export default function PacientesPage() {
     };
   }, [authUserId, navigate]);
 
+  async function handleDeletePaciente(pacienteId: number) {
+    const confirmed = window.confirm("Deseja remover este paciente?");
+
+    if (!confirmed) {
+      return;
+    }
+
+    setActionError("");
+
+    try {
+      await deletePaciente(pacienteId);
+      setPacientes((current) =>
+        current.filter((paciente) => paciente.id !== pacienteId),
+      );
+    } catch (error) {
+      if (error instanceof HttpErrorApi) {
+        setActionError(error.message);
+      } else {
+        setActionError("Não foi possível remover o paciente.");
+      }
+    }
+  }
+
   return (
     <DashboardLayout>
       <Box className={styles.pacientesPage}>
@@ -127,7 +118,7 @@ export default function PacientesPage() {
               Pacientes
             </Typography>
             <Typography className={styles.pacientesPage__subtitle}>
-              Acompanhe os pacientes vinculados ao seu usuario.
+              Acompanhe os pacientes vinculados ao seu usuário.
             </Typography>
           </Box>
 
@@ -153,11 +144,15 @@ export default function PacientesPage() {
           <Alert severity="error">{errorMessage}</Alert>
         ) : null}
 
+        {!isLoading && actionError ? (
+          <Alert severity="error">{actionError}</Alert>
+        ) : null}
+
         {!isLoading && !errorMessage && pacientes.length === 0 ? (
           <Paper className={styles.pacientesPage__emptyState}>
             <Typography component="h2">Nenhum paciente cadastrado</Typography>
             <Typography>
-              Quando houver pacientes vinculados ao seu usuario, eles
+              Quando houver pacientes vinculados ao seu usuário, eles
               aparecerao nesta lista.
             </Typography>
           </Paper>
@@ -170,18 +165,48 @@ export default function PacientesPage() {
           >
             <Table>
               <TableHead>
-                <TableRow>
-                  <TableCell>Nome</TableCell>
-                  <TableCell>CPF</TableCell>
-                  <TableCell>Data de nascimento</TableCell>
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                {pacientes.map((paciente) => (
+                  <TableRow>
+                    <TableCell>Nome</TableCell>
+                    <TableCell>CPF</TableCell>
+                    <TableCell>Data de nascimento</TableCell>
+                    <TableCell align="right">Ações</TableCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  {pacientes.map((paciente) => (
                   <TableRow key={paciente.id}>
                     <TableCell>{paciente.nome}</TableCell>
                     <TableCell>{paciente.cpf}</TableCell>
                     <TableCell>{formatDate(paciente.dataNascimento)}</TableCell>
+                    <TableCell align="right">
+                      <Box className={styles.pacientesPage__tableActions}>
+                        <Button
+                          href={`/pacientes/${paciente.id}`}
+                          variant="outlined"
+                          startIcon={<Eye size={16} />}
+                          className={styles.pacientesPage__actionButton}
+                        >
+                          Ver
+                        </Button>
+                        <Button
+                          href={`/pacientes/${paciente.id}/editar`}
+                          variant="outlined"
+                          startIcon={<Edit size={16} />}
+                          className={styles.pacientesPage__actionButton}
+                        >
+                          Editar
+                        </Button>
+                        <Button
+                          color="error"
+                          variant="outlined"
+                          startIcon={<Trash2 size={16} />}
+                          className={styles.pacientesPage__deleteButton}
+                          onClick={() => void handleDeletePaciente(paciente.id)}
+                        >
+                          Excluir
+                        </Button>
+                      </Box>
+                    </TableCell>
                   </TableRow>
                 ))}
               </TableBody>

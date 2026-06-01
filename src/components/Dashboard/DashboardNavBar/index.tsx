@@ -9,9 +9,10 @@ import {
   ListItemText,
 } from "@mui/material";
 import styles from "./styles.module.scss";
-import { Link } from "@tanstack/react-router";
+import { Link, useNavigate } from "@tanstack/react-router";
 import logoHorus from "@/assets/logo.png";
-import { Home, Users } from "lucide-react";
+import { Home, LogOut, Users } from "lucide-react";
+import { logout } from "@/utils/session";
 
 const pages = [
   {
@@ -27,6 +28,13 @@ const pages = [
 ];
 
 export default function MenuAppBar() {
+  const navigate = useNavigate();
+
+  async function handleLogout() {
+    logout();
+    await navigate({ to: "/login" });
+  }
+
   // const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 
   // const handleMenu = (event: React.MouseEvent<HTMLElement>) => {
@@ -78,7 +86,23 @@ export default function MenuAppBar() {
               })}
             </List>
           </Box>
-          <Box></Box>
+          <Box className={styles.dashboardNavBar__footer}>
+            <ListItem disablePadding className={styles.dashboardNavBar__listItem}>
+              <ListItemButton
+                onClick={() => void handleLogout()}
+                className={styles.dashboardNavBar__listItemButton}
+              >
+                <LogOut
+                  size={18}
+                  className={styles.dashboardNavBar__listItemIcon}
+                />
+                <ListItemText
+                  primary="Sair"
+                  className={styles.dashboardNavBar__listItemText}
+                />
+              </ListItemButton>
+            </ListItem>
+          </Box>
         </Toolbar>
       </Container>
     </AppBar>

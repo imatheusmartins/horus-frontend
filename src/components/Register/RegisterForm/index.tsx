@@ -121,11 +121,11 @@ const RegisterForm = () => {
             sx={{ fontSize: LABEL_FONT_SIZE }}
             htmlFor="register-email"
           >
-            Email
+            E-mail
           </InputLabel>
           <OutlinedInput
             id="register-email"
-            label="Email"
+            label="E-mail"
             type="email"
             sx={{ height: FIELD_HEIGHT }}
             value={email}

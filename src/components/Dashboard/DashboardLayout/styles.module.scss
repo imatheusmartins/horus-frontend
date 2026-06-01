@@ -8,7 +8,11 @@
   &__content {
     min-height: 100vh;
     margin-left: 15rem;
+    width: calc(100% - 15rem);
+    max-width: calc(100% - 15rem);
     padding: 2rem;
+    box-sizing: border-box;
+    overflow-x: hidden;
   }
 }
 
@@ -16,6 +20,8 @@
   .dashboardLayout {
     &__content {
       margin-left: 0;
+      width: 100%;
+      max-width: 100%;
       padding: 5.5rem 1rem 1.25rem;
     }
   }

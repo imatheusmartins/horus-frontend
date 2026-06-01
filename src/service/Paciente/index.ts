@@ -14,6 +14,8 @@ export interface CreatePacientePayload {
   usuarioId: string | number;
 }
 
+export type UpdatePacientePayload = CreatePacientePayload;
+
 export async function getPacientesByUsuario(
   usuarioId: string | number,
 ): Promise<Paciente[]> {
@@ -26,4 +28,21 @@ export async function createPaciente(
 ): Promise<Paciente> {
   const response = await api.post<Paciente>("/pacientes", payload);
   return response.data;
+}
+
+export async function getPaciente(id: string | number): Promise<Paciente> {
+  const response = await api.get<Paciente>(`/pacientes/${id}`);
+  return response.data;
+}
+
+export async function updatePaciente(
+  id: string | number,
+  payload: UpdatePacientePayload,
+): Promise<Paciente> {
+  const response = await api.put<Paciente>(`/pacientes/${id}`, payload);
+  return response.data;
+}
+
+export async function deletePaciente(id: string | number): Promise<void> {
+  await api.delete(`/pacientes/${id}`);
 }

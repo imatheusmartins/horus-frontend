@@ -20,7 +20,7 @@ import styles from "./styles.module.scss";
 
 const FIELD_HEIGHT = "2.5rem";
 const LABEL_FONT_SIZE = 14;
-const INVALID_CREDENTIALS_MESSAGE = "Email ou senha inválidos";
+const INVALID_CREDENTIALS_MESSAGE = "E-mail ou senha inválidos";
 
 const FormLogin = () => {
   const navigate = useNavigate();
@@ -84,7 +84,7 @@ const FormLogin = () => {
           margin: ".1rem auto",
         }}
       >
-        Bem vindo de volta!
+        Bem-vindo de volta!
       </Typography>
       <Typography
         sx={{
@@ -99,11 +99,11 @@ const FormLogin = () => {
       <Box className={styles.loginForm__fields}>
         <FormControl fullWidth variant="outlined" required>
           <InputLabel sx={{ fontSize: LABEL_FONT_SIZE }} htmlFor="login-email">
-            Email
+            E-mail
           </InputLabel>
           <OutlinedInput
             id="login-email"
-            label="Email"
+            label="E-mail"
             type="email"
             sx={{ height: FIELD_HEIGHT }}
             value={email}

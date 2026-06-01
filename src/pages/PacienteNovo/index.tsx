@@ -1,6 +1,8 @@
 import DashboardLayout from "@/components/Dashboard/DashboardLayout";
 import { HttpErrorApi } from "@/infra/HttpErrorApi";
 import { createPaciente } from "@/service/Paciente";
+import { getAuthUser, getAuthUserId } from "@/utils/session";
+import { onlyNumbers } from "@/utils/formatters";
 import {
   Alert,
   Box,
@@ -14,34 +16,6 @@ import {
 import { Link, useNavigate } from "@tanstack/react-router";
 import { useMemo, useState, type FormEvent } from "react";
 import styles from "./styles.module.scss";
-
-interface AuthUser {
-  id?: string | number;
-  usuarioId?: string | number;
-  userId?: string | number;
-}
-
-function getAuthUser(): AuthUser | null {
-  const storedUser = localStorage.getItem("authUser");
-
-  if (!storedUser) {
-    return null;
-  }
-
-  try {
-    return JSON.parse(storedUser) as AuthUser;
-  } catch {
-    return null;
-  }
-}
-
-function getAuthUserId(authUser: AuthUser | null) {
-  return authUser?.id ?? authUser?.usuarioId ?? authUser?.userId ?? null;
-}
-
-function onlyNumbers(value: string) {
-  return value.replace(/\D/g, "");
-}
 
 export default function PacienteNovoPage() {
   const navigate = useNavigate();
@@ -58,7 +32,7 @@ export default function PacienteNovoPage() {
     setErrorMessage("");
 
     if (!authUserId) {
-      setErrorMessage("Faca login para cadastrar um paciente.");
+      setErrorMessage("Faça login para cadastrar um paciente.");
       return;
     }
 
@@ -82,7 +56,7 @@ export default function PacienteNovoPage() {
       if (error instanceof HttpErrorApi) {
         setErrorMessage(error.message);
       } else {
-        setErrorMessage("Nao foi possivel cadastrar o paciente.");
+        setErrorMessage("Não foi possível cadastrar o paciente.");
       }
     } finally {
       setIsSubmitting(false);
@@ -101,7 +75,7 @@ export default function PacienteNovoPage() {
             Novo paciente
           </Typography>
           <Typography className={styles.pacienteNovoPage__text}>
-            Cadastre um paciente vinculado ao seu usuario.
+            Cadastre um paciente vinculado ao seu usuário.
           </Typography>
 
           <Box className={styles.pacienteNovoPage__fields}>

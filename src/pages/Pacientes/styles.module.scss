@@ -32,6 +32,25 @@
     text-transform: none !important;
   }
 
+  &__tableActions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  &__actionButton {
+    color: var(--horus-blue) !important;
+    border-color: var(--horus-blue) !important;
+    font-weight: 700 !important;
+    text-transform: none !important;
+  }
+
+  &__deleteButton {
+    font-weight: 700 !important;
+    text-transform: none !important;
+  }
+
   &__feedback {
     display: flex;
     align-items: center;

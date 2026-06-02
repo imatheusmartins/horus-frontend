@@ -1,10 +1,24 @@
 # FE Horus
 
-Frontend da aplicacao Horus, desenvolvido com React, TypeScript e Vite.
+Frontend da aplicacao Horus, desenvolvido em React, TypeScript e Vite.
+
+Este repositorio faz parte do prototipo desenvolvido para o Trabalho de Conclusao de Curso. A aplicacao compoe a camada de interface do sistema Horus, consumindo os servicos expostos pelo backend e apresentando ao usuario as funcionalidades relacionadas ao cadastro, consulta e acompanhamento de pacientes e exames.
+
+## Contexto do projeto
+
+O Horus foi estruturado em mais de um componente de software:
+
+- Backend em Java com Spring Boot, responsavel pelas regras de negocio e persistencia dos dados
+- Frontend em React, responsavel pela interface web utilizada pelo usuario
+- Servico de API em Python, responsavel pela integracao com o modelo de inteligencia artificial
+
+Este repositorio trata exclusivamente do frontend. A comunicacao com os demais servicos e feita por meio de requisicoes HTTP, utilizando a URL configurada na variavel de ambiente `VITE_API_URL`.
 
 ## Objetivo
 
-Este projeto concentra a interface web da aplicacao Horus. A proposta e disponibilizar uma base simples para desenvolvimento local, validacao automatizada no GitHub e publicacao continua na Vercel.
+O objetivo deste frontend e disponibilizar uma interface web funcional para validacao do prototipo, permitindo a navegacao entre as telas principais do sistema e a integracao com a API do backend.
+
+Alem da execucao local, o projeto tambem esta preparado para validacao automatizada em ambiente de CI e publicacao continua por meio da Vercel.
 
 ## Tecnologias utilizadas
 
@@ -14,46 +28,75 @@ Este projeto concentra a interface web da aplicacao Horus. A proposta e disponib
 - TanStack Router
 - Sass
 - ESLint
+- Axios
+- Vercel
+- GitHub Actions
 
 ## Requisitos
 
 - Node.js 20 ou superior
 - npm 10 ou superior
 
-## Execucao local
+## Configuracao do ambiente
 
-1. Instale as dependencias:
-
-```bash
-npm install
-```
-
-2. Crie o arquivo `.env` na raiz do projeto com a variavel abaixo:
+Antes de executar o projeto, crie um arquivo `.env` na raiz do repositorio com a URL da API utilizada pelo frontend:
 
 ```env
 VITE_API_URL=http://localhost:8081
 ```
 
-Se a variavel nao for definida, o frontend utiliza `http://localhost:8081` como valor padrao.
+Quando a variavel nao e informada, a aplicacao utiliza uma URL padrao definida no codigo. Ainda assim, recomenda-se manter o arquivo `.env` configurado para evitar divergencias entre os ambientes de desenvolvimento, homologacao e producao.
 
-3. Inicie o servidor de desenvolvimento:
+O arquivo `.env.example` deve ser usado como referencia para as variaveis esperadas pelo projeto.
+
+## Execucao local
+
+Instale as dependencias do projeto:
+
+```bash
+npm install
+```
+
+Inicie o servidor de desenvolvimento:
 
 ```bash
 npm run dev
 ```
 
-4. Acesse o endereco exibido no terminal. No ambiente padrao do Vite, a aplicacao costuma ficar disponivel em `http://localhost:5173`.
+Por padrao, o Vite disponibiliza a aplicacao em:
+
+```text
+http://localhost:5173
+```
+
+Caso a porta esteja em uso, o proprio Vite indicara outro endereco no terminal.
 
 ## Scripts disponiveis
 
-- `npm run dev`: inicia o servidor de desenvolvimento
-- `npm run build`: gera a build de producao
-- `npm run preview`: publica localmente a versao gerada em `dist`
-- `npm run lint`: executa a verificacao de padrao de codigo com ESLint
+- `npm run dev`: inicia o ambiente local de desenvolvimento
+- `npm run build`: executa a verificacao TypeScript e gera a build de producao
+- `npm run lint`: executa a analise estatica do codigo com ESLint
+- `npm run preview`: executa localmente a versao gerada em `dist`
+
+## Build de producao
+
+Para gerar os arquivos finais da aplicacao, execute:
+
+```bash
+npm run build
+```
+
+O resultado e gravado no diretorio `dist`. Esse diretorio contem apenas artefatos gerados pela build e nao deve ser editado manualmente.
+
+Para validar localmente a versao de producao, execute:
+
+```bash
+npm run preview
+```
 
 ## Variaveis de ambiente
 
-### Desenvolvimento local
+### Desenvolvimento
 
 ```env
 VITE_API_URL=http://localhost:8081
@@ -61,70 +104,86 @@ VITE_API_URL=http://localhost:8081
 
 ### Producao
 
-Na Vercel, a variavel `VITE_API_URL` deve apontar para a URL publica da API.
-
-Exemplo:
+Em producao, a variavel `VITE_API_URL` deve apontar para a URL publica da API:
 
 ```env
-VITE_API_URL=https://api-exemplo.com
+VITE_API_URL=https://api.seu-dominio.com
 ```
 
-Se o backend ainda nao estiver publicado, o frontend pode ser hospedado normalmente para demonstracao da parte estatica. Nesse caso, telas que dependem da API devem ser evitadas, adaptadas ou alimentadas com dados simulados.
+Na Vercel, essa variavel deve ser cadastrada no painel do projeto antes do deploy de producao.
 
 ## CI/CD
 
-O projeto utiliza um fluxo simples de integracao e entrega continua.
+O fluxo de integracao e entrega continua foi definido com foco no escopo do prototipo. A proposta e garantir que cada alteracao enviada ao repositorio passe por validacoes basicas antes de chegar ao ambiente publicado.
 
-### CI no GitHub Actions
+### Integracao continua
 
-O workflow esta definido em `.github/workflows/ci.yml`.
+O workflow de CI esta definido em:
 
-Ele e executado nas seguintes situacoes:
+```text
+.github/workflows/ci.yml
+```
+
+Ele e executado automaticamente nas seguintes situacoes:
 
 - `push` nas branches `main` e `dev`
-- `pull request` para `main` e `dev`
+- `pull_request` direcionado para `main` ou `dev`
 
-As etapas executadas sao:
+As etapas executadas pelo workflow sao:
 
-1. Instalar dependencias com `npm ci`
-2. Executar o lint com `npm run lint`
-3. Gerar a build com `npm run build`
+1. Checkout do repositorio
+2. Configuracao do Node.js
+3. Instalacao das dependencias com `npm ci`
+4. Execucao do lint com `npm run lint`
+5. Geracao da build com `npm run build`
 
-Com isso, cada alteracao relevante passa por uma validacao automatica antes de seguir para deploy.
+Esse processo reduz o risco de publicar alteracoes com erros de sintaxe, problemas de padrao de codigo ou falhas na compilacao TypeScript.
 
-### CD na Vercel
+### Entrega continua
 
-A publicacao do frontend e feita pela Vercel a partir do repositorio no GitHub.
+A entrega continua do frontend e realizada pela Vercel, integrada ao repositorio GitHub.
 
-Fluxo esperado:
+O fluxo adotado e:
 
-1. O repositorio e conectado a um projeto na Vercel
-2. A branch `main` e definida como branch de producao
-3. Cada novo `push` na `main` gera um deploy de producao
-4. Branches auxiliares podem gerar deploys de preview para validacao
+1. Alteracoes sao desenvolvidas em branch separada
+2. Um pull request e aberto para a branch principal de desenvolvimento
+3. O GitHub Actions valida a alteracao
+4. Apos o merge na branch `main`, a Vercel executa o deploy de producao
+5. Branches auxiliares podem gerar deploys de preview para validacao antes da publicacao final
+
+Essa abordagem mantem o pipeline simples, adequado ao contexto academico do projeto, mas ainda representa um fluxo real de CI/CD utilizado em aplicacoes web modernas.
 
 ## Configuracao da Vercel
 
-Ao importar o projeto na Vercel, utilizar as configuracoes abaixo:
+Ao importar o projeto na Vercel, utilize as seguintes configuracoes:
 
 - Framework Preset: `Vite`
 - Build Command: `npm run build`
 - Output Directory: `dist`
 
-Tambem e necessario cadastrar a variavel de ambiente `VITE_API_URL` no painel da Vercel.
+Tambem e necessario cadastrar a variavel `VITE_API_URL` no ambiente da Vercel.
 
-## Estrategia recomendada de uso
+O arquivo `vercel.json` contem a regra de redirecionamento necessaria para que as rotas da aplicacao React funcionem corretamente em acessos diretos pelo navegador.
 
-Para manter o fluxo de entrega simples e organizado:
+## Estrutura geral
 
-1. Desenvolver novas alteracoes em branch separada
-2. Abrir `pull request` para revisao ou validacao
-3. Confirmar que o workflow do GitHub Actions passou com sucesso
-4. Realizar o merge na `main`
-5. Acompanhar o deploy automatico na Vercel
+```text
+src/
+  assets/       Arquivos estaticos utilizados pela interface
+  components/   Componentes reutilizaveis da aplicacao
+  infra/        Configuracoes de comunicacao HTTP
+  pages/        Telas principais do sistema
+  routes/       Definicao das rotas com TanStack Router
+  service/      Servicos responsaveis pelas chamadas para a API
+  theme/        Estilos globais
+  types/        Tipagens compartilhadas
+  utils/        Funcoes auxiliares
+```
 
 ## Observacoes
 
-- O frontend espera uma API disponivel, por padrao, em `http://localhost:8081`
-- Caso o backend utilize outro host ou porta, ajuste `VITE_API_URL`
-- O diretorio `dist` contem apenas os arquivos gerados pela build e nao deve ser editado manualmente
+- O frontend depende da API do backend para executar as funcionalidades completas
+- A URL da API deve ser configurada por ambiente por meio de `VITE_API_URL`
+- O diretorio `node_modules` nao deve ser versionado
+- O diretorio `dist` e gerado automaticamente durante a build
+- O pipeline atual prioriza validacoes essenciais para o prototipo: lint, compilacao TypeScript e build de producao

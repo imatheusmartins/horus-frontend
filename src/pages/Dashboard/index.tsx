@@ -44,6 +44,8 @@ function getPredictionDescription(exame?: Exame) {
   );
 }
 
+//Demo CI/CD
+
 function getMostRecentExam(exames: ExamWithPatient[]) {
   return [...exames].sort(
     (a, b) =>

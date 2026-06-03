@@ -74,10 +74,14 @@
   &__tableContainer {
     border-radius: 8px !important;
     box-shadow: none !important;
-    overflow: hidden;
+    overflow-x: auto;
 
     :global(.MuiTableHead-root) {
       background-color: var(--horus-blue);
+    }
+
+    :global(.MuiTable-root) {
+      min-width: 46rem;
     }
 
     :global(.MuiTableCell-head) {
@@ -89,9 +93,23 @@
 
 @media (max-width: 768px) {
   .pacientesPage {
+    gap: 1rem;
+
     &__header {
       align-items: stretch;
       flex-direction: column;
+    }
+
+    &__title {
+      font-size: 1.6rem;
+    }
+
+    &__newButton {
+      width: 100%;
+    }
+
+    &__emptyState {
+      padding: 1.25rem;
     }
   }
 }

@@ -38,3 +38,12 @@ export function onlyNumbers(value: string) {
   return value.replace(/\D/g, "");
 }
 
+export function formatCpf(value: string) {
+  const cpf = onlyNumbers(value).slice(0, 11);
+
+  return cpf
+    .replace(/^(\d{3})(\d)/, "$1.$2")
+    .replace(/^(\d{3})\.(\d{3})(\d)/, "$1.$2.$3")
+    .replace(/^(\d{3})\.(\d{3})\.(\d{3})(\d)/, "$1.$2.$3-$4");
+}
+

@@ -2,6 +2,7 @@ import DashboardLayout from "@/components/Dashboard/DashboardLayout";
 import { HttpErrorApi } from "@/infra/HttpErrorApi";
 import { createExame } from "@/service/Exame";
 import { getPaciente, type Paciente } from "@/service/Paciente";
+import { formatCpf } from "@/utils/formatters";
 import {
   Alert,
   Box,
@@ -153,7 +154,7 @@ export default function AnaliseNovaPage({ pacienteId }: AnaliseNovaPageProps) {
           {paciente ? (
             <Box className={styles.analiseNovaPage__patient}>
               <Typography component="h2">{paciente.nome}</Typography>
-              <Typography>CPF: {paciente.cpf}</Typography>
+              <Typography>CPF: {formatCpf(paciente.cpf)}</Typography>
             </Box>
           ) : null}
 

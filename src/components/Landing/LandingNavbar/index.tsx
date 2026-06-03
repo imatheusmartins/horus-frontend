@@ -6,16 +6,10 @@ import {
   Typography,
   Button,
   ButtonBase,
-  List,
-  ListItem,
-  ListItemButton,
-  ListItemText,
 } from "@mui/material";
 import styles from "./styles.module.scss";
 import { Link } from "@tanstack/react-router";
 import logoHorus from "@/assets/logo.png";
-
-const pages = ["Projeto", "Referencial Teórico", "Sobre nós"];
 
 function Logo() {
   return (
@@ -52,44 +46,22 @@ export default function LandingNavBar() {
         <Toolbar disableGutters className={styles.landingNavBar__toolBar}>
           <Logo />
 
-          <Box className={styles.landingNavBar__navList}>
-            <List className={styles.landingNavBar__list}>
-              {pages.map((page) => (
-                <ListItem
-                  key={page}
-                  disablePadding
-                  className={styles.landingNavBar__listItem}
-                >
-                  <ListItemButton
-                    component={Link}
-                    to={`/${page.toLowerCase().replace(/\s+/g, "-")}`}
-                    className={styles.landingNavBar__listItemButton}
-                  >
-                    <ListItemText
-                      primary={page}
-                      className={styles.landingNavBar__listItemText}
-                    />
-                    <Box className={styles.bottomBar} />
-                  </ListItemButton>
-                </ListItem>
-              ))}
-            </List>
-          </Box>
-
           <Box className={styles.landingNavBar__actions}>
             <Button
               component={Link}
-              to="/Login"
+              to="/login"
               variant="text"
               className={styles.landingNavBar__loginButton}
             >
-              Login
+              Entrar
             </Button>
             <Button
+              component={Link}
+              to="/register"
               variant="outlined"
               className={styles.landingNavBar__signupButton}
             >
-              Sign-Up
+              Cadastrar
             </Button>
           </Box>
         </Toolbar>

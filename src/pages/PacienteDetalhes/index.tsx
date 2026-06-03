@@ -2,7 +2,12 @@ import DashboardLayout from "@/components/Dashboard/DashboardLayout";
 import { HttpErrorApi, HttpStatusCode } from "@/infra/HttpErrorApi";
 import { deletePaciente, getPaciente, type Paciente } from "@/service/Paciente";
 import { deleteExame, getExamesByPaciente, type Exame } from "@/service/Exame";
-import { formatDate, formatDateTime, formatPercent } from "@/utils/formatters";
+import {
+  formatCpf,
+  formatDate,
+  formatDateTime,
+  formatPercent,
+} from "@/utils/formatters";
 import {
   Alert,
   Box,
@@ -176,7 +181,7 @@ export default function PacienteDetalhesPage({
               <Box className={styles.pacienteDetalhesPage__panelHeader}>
                 <Box>
                   <Typography component="h2">{paciente.nome}</Typography>
-                  <Typography>CPF: {paciente.cpf}</Typography>
+                  <Typography>CPF: {formatCpf(paciente.cpf)}</Typography>
                   <Typography>
                     Data de nascimento: {formatDate(paciente.dataNascimento)}
                   </Typography>

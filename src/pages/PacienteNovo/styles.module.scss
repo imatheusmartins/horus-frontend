@@ -59,8 +59,20 @@
 
 @media (max-width: 768px) {
   .pacienteNovoPage {
+    &__panel {
+      padding: 1.25rem;
+    }
+
+    &__title {
+      font-size: 1.6rem;
+    }
+
     &__actions {
       flex-direction: column-reverse;
+
+      > * {
+        width: 100%;
+      }
     }
   }
 }

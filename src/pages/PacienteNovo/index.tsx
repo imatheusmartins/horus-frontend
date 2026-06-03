@@ -2,7 +2,7 @@ import DashboardLayout from "@/components/Dashboard/DashboardLayout";
 import { HttpErrorApi } from "@/infra/HttpErrorApi";
 import { createPaciente } from "@/service/Paciente";
 import { getAuthUser, getAuthUserId } from "@/utils/session";
-import { onlyNumbers } from "@/utils/formatters";
+import { formatCpf, onlyNumbers } from "@/utils/formatters";
 import {
   Alert,
   Box,
@@ -96,7 +96,7 @@ export default function PacienteNovoPage() {
                 label="CPF"
                 inputProps={{ maxLength: 14 }}
                 value={cpf}
-                onChange={(event) => setCpf(event.target.value)}
+                onChange={(event) => setCpf(formatCpf(event.target.value))}
               />
             </FormControl>
 
@@ -108,6 +108,7 @@ export default function PacienteNovoPage() {
                 id="paciente-data-nascimento"
                 label="Data de nascimento"
                 type="date"
+                notched
                 value={dataNascimento}
                 onChange={(event) => setDataNascimento(event.target.value)}
               />

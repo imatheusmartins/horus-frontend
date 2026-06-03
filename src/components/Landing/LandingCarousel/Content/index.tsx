@@ -5,13 +5,15 @@ import styles from "./styles.module.scss";
 type ContentProps = {
   typographyText: string;
   typographyWidth: string;
-  to: string;
-  buttonText: string;
+  description?: string;
+  to?: string;
+  buttonText?: string;
 };
 
 export default function Content({
   typographyText,
   typographyWidth,
+  description,
   to,
   buttonText,
 }: ContentProps): React.ReactNode {
@@ -25,9 +27,16 @@ export default function Content({
       >
         {typographyText}
       </Typography>
-      <Button component={Link} to={to} className={styles.contentButton}>
-        {buttonText}
-      </Button>
+      {description ? (
+        <Typography className={styles.contentDescription}>
+          {description}
+        </Typography>
+      ) : null}
+      {buttonText && to && (
+        <Button component={Link} to={to} className={styles.contentButton}>
+          {buttonText}
+        </Button>
+      )}
     </Box>
   );
 }

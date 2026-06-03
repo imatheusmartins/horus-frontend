@@ -1,35 +1,35 @@
 import { Carousel } from "antd";
 import CarouselContent from "./CarouselContent";
+import Content from "./Content";
 import team from "@/assets/team.png";
 import eye from "@/assets/eye.png";
 import oftalmologista from "@/assets/oftalmologista.mp4";
-import Content from "./Content";
+
+const description =
+  "Protótipo acadêmico voltado ao diagnóstico assistido de retinopatia diabética, utilizando deep learning para apoiar a análise de imagens de retina e a organização dos resultados clínicos.";
 
 const LandingCarousel = () => {
   return (
-    <Carousel autoplay={{ dotDuration: true }} autoplaySpeed={2000}>
+    <Carousel autoplay={{ dotDuration: true }} autoplaySpeed={5000}>
       <CarouselContent background={team}>
         <Content
-          buttonText="About Us"
-          typographyText="Conheça nosso time"
+          typographyText="HÓRUS"
           typographyWidth="29rem"
-          to="/aboutUs"
+          description={description}
         />
       </CarouselContent>
       <CarouselContent background={eye}>
         <Content
-          buttonText="Referencial Teórico"
-          typographyText="Confira nosso referencial teórico"
+          typographyText="HÓRUS"
           typographyWidth="59rem"
-          to=""
+          description={description}
         />
       </CarouselContent>
       <CarouselContent background={oftalmologista}>
         <Content
-          buttonText="Projeto"
-          typographyText="Entenda sobre o projeto"
+          typographyText="HÓRUS"
           typographyWidth="39rem"
-          to=""
+          description={description}
         />
       </CarouselContent>
     </Carousel>

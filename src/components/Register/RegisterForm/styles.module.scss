@@ -1,5 +1,5 @@
 .registerForm {
-  width: 19rem;
+  width: min(19rem, calc(100vw - 2rem));
   min-height: 30rem;
   display: flex;
   flex-direction: column;
@@ -52,6 +52,17 @@
       background-color: var(--horus-blue-50) !important;
       box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px !important;
       scale: 1.02;
+    }
+  }
+}
+
+@media (max-width: 420px) {
+  .registerForm {
+    min-height: auto;
+    padding: 1.5rem;
+
+    &__fields {
+      gap: 1.25rem;
     }
   }
 }

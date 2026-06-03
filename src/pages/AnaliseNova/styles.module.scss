@@ -99,9 +99,26 @@
 
 @media (max-width: 768px) {
   .analiseNovaPage {
+    &__panel {
+      padding: 1.25rem;
+    }
+
+    &__title {
+      font-size: 1.6rem;
+    }
+
+    &__upload {
+      align-items: stretch;
+      flex-direction: column;
+    }
+
     &__actions {
       align-items: stretch;
       flex-direction: column-reverse;
+
+      > * {
+        width: 100%;
+      }
     }
   }
 }

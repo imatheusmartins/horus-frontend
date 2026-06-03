@@ -111,19 +111,21 @@
     width: 100% !important;
     max-width: 100% !important;
     min-width: 0 !important;
-    height: 4.5rem !important;
-    min-height: 4.5rem !important;
+    height: auto !important;
+    min-height: 4.75rem !important;
+    overflow-x: auto;
 
     &__toolbar {
       align-items: center !important;
       flex-direction: row !important;
-      min-height: 4.5rem !important;
+      min-height: 4.75rem !important;
+      padding-right: 0.5rem !important;
     }
 
     &__logoImg {
-      width: 4rem;
-      height: 3.5rem;
-      margin: 0 1rem;
+      width: 3.25rem;
+      height: 3rem;
+      margin: 0 0.75rem;
     }
 
     &__tabs {
@@ -140,16 +142,20 @@
     &__list {
       flex-direction: row;
       margin-top: 0;
+      min-width: max-content;
     }
 
     &__listItemButton {
       justify-content: center;
-      padding: 0.75rem 0.5rem !important;
+      min-width: 4.5rem;
+      padding: 0.65rem 0.5rem !important;
+      flex-direction: column;
+      gap: 0.25rem;
     }
 
     &__listItemText {
       :global(.MuiTypography-root) {
-        font-size: 0.7rem;
+        font-size: 0.62rem;
         text-align: center !important;
       }
     }

@@ -87,12 +87,30 @@
 
 @media (max-width: 768px) {
   .pacienteDetalhesPage {
+    gap: 1rem;
+
     &__header,
     &__panelHeader,
     &__sectionHeader,
     &__examItem {
       align-items: stretch;
       flex-direction: column;
+    }
+
+    &__title {
+      font-size: 1.6rem;
+    }
+
+    &__panel,
+    &__emptyState,
+    &__examItem {
+      padding: 1.25rem;
+    }
+
+    &__primaryButton,
+    &__secondaryButton,
+    &__dangerButton {
+      width: 100%;
     }
   }
 }

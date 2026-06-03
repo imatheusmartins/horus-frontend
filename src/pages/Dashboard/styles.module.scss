@@ -140,17 +140,32 @@
 
 @media (max-width: 768px) {
   .dashboardPage {
+    gap: 1rem;
+
     &__header {
       align-items: stretch;
       flex-direction: column;
     }
 
+    &__title {
+      font-size: 1.6rem;
+    }
+
     &__actions {
       flex-direction: column;
+
+      > * {
+        width: 100%;
+      }
     }
 
     &__metrics {
       grid-template-columns: 1fr;
+    }
+
+    &__metric,
+    &__panel {
+      padding: 1.25rem;
     }
   }
 }

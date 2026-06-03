@@ -5,7 +5,7 @@ import {
   getPacientesByUsuario,
   type Paciente,
 } from "@/service/Paciente";
-import { formatDate } from "@/utils/formatters";
+import { formatCpf, formatDate } from "@/utils/formatters";
 import { getAuthUser, getAuthUserId } from "@/utils/session";
 import {
   Alert,
@@ -176,7 +176,7 @@ export default function PacientesPage() {
                   {pacientes.map((paciente) => (
                   <TableRow key={paciente.id}>
                     <TableCell>{paciente.nome}</TableCell>
-                    <TableCell>{paciente.cpf}</TableCell>
+                    <TableCell>{formatCpf(paciente.cpf)}</TableCell>
                     <TableCell>{formatDate(paciente.dataNascimento)}</TableCell>
                     <TableCell align="right">
                       <Box className={styles.pacientesPage__tableActions}>

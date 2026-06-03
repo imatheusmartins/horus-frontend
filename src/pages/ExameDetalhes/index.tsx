@@ -7,7 +7,6 @@ import {
   Box,
   Button,
   CircularProgress,
-  Divider,
   LinearProgress,
   Paper,
   Typography,
@@ -94,7 +93,6 @@ export default function ExameDetalhesPage({ exameId }: ExameDetalhesPageProps) {
   const originalUrl = resolveImageUrl(exame?.urlImagemOriginal);
   const annotatedUrl = resolveImageUrl(exame?.urlImagemAnotada);
   const predictions = exame?.analiseIA?.predictions ?? [];
-  const detections = exame?.analiseIA?.detections ?? [];
   const topPrediction = exame?.analiseIA?.top_prediction;
   const topDescription = getPredictionDescription(
     topPrediction?.label,
@@ -110,7 +108,7 @@ export default function ExameDetalhesPage({ exameId }: ExameDetalhesPageProps) {
               Resultado da análise
             </Typography>
             <Typography className={styles.exameDetalhesPage__subtitle}>
-              Imagens do exame, predicoes e possiveis deteccoes da IA.
+              Imagens do exame e predições.
             </Typography>
           </Box>
 
@@ -177,7 +175,7 @@ export default function ExameDetalhesPage({ exameId }: ExameDetalhesPageProps) {
             </Box>
 
             <Paper className={styles.exameDetalhesPage__panel}>
-              <Typography component="h2">Predicoes</Typography>
+              <Typography component="h2">Predições</Typography>
               {predictions.length === 0 ? (
                 <Typography>Nenhuma predição retornada pela IA.</Typography>
               ) : (
@@ -198,35 +196,6 @@ export default function ExameDetalhesPage({ exameId }: ExameDetalhesPageProps) {
                         variant="determinate"
                         value={Math.min(prediction.confidence * 100, 100)}
                       />
-                    </Box>
-                  ))}
-                </Box>
-              )}
-            </Paper>
-
-            <Paper className={styles.exameDetalhesPage__panel}>
-              <Typography component="h2">Deteccoes</Typography>
-              {detections.length === 0 ? (
-                <Typography>Nenhuma detecção retornada pela IA.</Typography>
-              ) : (
-                <Box className={styles.exameDetalhesPage__list}>
-                  {detections.map((detection, index) => (
-                    <Box key={`${detection.label}-${index}`} className={styles.exameDetalhesPage__detection}>
-                      <Box>
-                        <Typography component="h3">{detection.label}</Typography>
-                        <Typography>
-                          Confiança: {formatPercent(detection.confidence)}
-                        </Typography>
-                      </Box>
-                      {detection.bbox ? (
-                        <>
-                          <Divider />
-                          <Typography>
-                            Area: x1 {detection.bbox.x1}, y1 {detection.bbox.y1},
-                            x2 {detection.bbox.x2}, y2 {detection.bbox.y2}
-                          </Typography>
-                        </>
-                      ) : null}
                     </Box>
                   ))}
                 </Box>

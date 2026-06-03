@@ -25,8 +25,7 @@
   &__summary p,
   &__imagePanel p,
   &__panel p,
-  &__row p,
-  &__detection p {
+  &__row p {
     color: #5f6b7a;
   }
 
@@ -41,8 +40,7 @@
   &__summary h2,
   &__imagePanel h2,
   &__panel h2,
-  &__row h3,
-  &__detection h3 {
+  &__row h3 {
     margin: 0 0 0.35rem;
     color: var(--horus-blue);
     font-weight: 700;
@@ -101,8 +99,7 @@
     margin-top: 1rem;
   }
 
-  &__row,
-  &__detection {
+  &__row {
     display: grid;
     gap: 0.65rem;
     padding: 1rem;
@@ -113,10 +110,22 @@
 
 @media (max-width: 900px) {
   .exameDetalhesPage {
+    gap: 1rem;
+
     &__header,
     &__summary {
       align-items: stretch;
       flex-direction: column;
+    }
+
+    &__title {
+      font-size: 1.6rem;
+    }
+
+    &__summary,
+    &__imagePanel,
+    &__panel {
+      padding: 1.25rem;
     }
 
     &__highlight {
@@ -125,6 +134,10 @@
 
     &__images {
       grid-template-columns: 1fr;
+    }
+
+    &__secondaryButton {
+      width: 100%;
     }
   }
 }

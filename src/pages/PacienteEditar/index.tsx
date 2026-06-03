@@ -1,7 +1,7 @@
 import DashboardLayout from "@/components/Dashboard/DashboardLayout";
 import { HttpErrorApi } from "@/infra/HttpErrorApi";
 import { getPaciente, updatePaciente } from "@/service/Paciente";
-import { onlyNumbers } from "@/utils/formatters";
+import { formatCpf, onlyNumbers } from "@/utils/formatters";
 import { getAuthUser, getAuthUserId } from "@/utils/session";
 import {
   Alert,
@@ -47,7 +47,7 @@ export default function PacienteEditarPage({
 
         if (isMounted) {
           setNome(paciente.nome);
-          setCpf(paciente.cpf);
+          setCpf(formatCpf(paciente.cpf));
           setDataNascimento(paciente.dataNascimento);
         }
       } catch (error) {
@@ -152,7 +152,7 @@ export default function PacienteEditarPage({
                   label="CPF"
                   inputProps={{ maxLength: 14 }}
                   value={cpf}
-                  onChange={(event) => setCpf(event.target.value)}
+                  onChange={(event) => setCpf(formatCpf(event.target.value))}
                 />
               </FormControl>
 
@@ -164,6 +164,7 @@ export default function PacienteEditarPage({
                   id="paciente-data-nascimento"
                   label="Data de nascimento"
                   type="date"
+                  notched
                   value={dataNascimento}
                   onChange={(event) => setDataNascimento(event.target.value)}
                 />
